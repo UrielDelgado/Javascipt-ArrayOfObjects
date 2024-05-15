@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Catalog</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card-deck {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4">Course Catalog</h1>
+    <div class="form-group">
+      <label for="priceFilter">Filter by price:</label>
+      <select class="form-control" id="priceFilter">
+        <option value="all">All Prices</option>
+        <option value="29.95">29.95</option>
+        <option value="30.00">30.00</option>
+        <option value="49.99">49.99</option>
+      </select>
+    </div>
+    <div id="courseList" class="card-deck"></div>
+  </div>
+
+  <script>
+    const courses = [
+      {
+        Course: 'Introduction to Machine Learning with Python',
+        CourseCode: 'AI-101',
+        CourseDescription: 'Get started with machine learning using Python. Learn the basics of data preprocessing, model training, and evaluation.',
+        Product: 'Python',
+        Role: 'Data Scientist',
+        Level: 'Beginner',
+        Duration: '3 months',
+        Price: '49.99',
+        CourseURL: '/intro-to-machine-learning-python.html',
+        CourseImage: 'https://example.com/images/ml-python-intro.jpg'
+      },
+      {
+        Course: 'Working with Eulers and Quaternion',
+        CourseCode: 'EU-212',
+        CourseDescription: 'Working with Eulers and Quaternion for game development settings',
+        Product: 'Unity',
+        Role: 'Programmer',
+        Level: 'Beginner',
+        Duration: '3 months',
+        Price: '30.00',
+        CourseURL: '/euler-quanternion.html',
+        CourseImage: 'https://unity-connect-prd.storage.googleapis.com/20190701/learn/images/7b8a192e-5ee5-47e1-bf63-95b38655fa8e_Quaternions.jpg'
+      },
+      {
+        Course: 'Introduction to Java',
+        CourseCode: 'AI-101',
+        CourseDescription: 'Learn to code in Java — a robust programming language used to create software, web and mobile apps, and more.',
+        Product: 'Java',
+        Role: 'Fullstack Software Engineer',
+        Level: 'Beginner',
+        Duration: '3 months',
+        Price: '49.99',
+        CourseURL: 'https://www.codecademy.com/learn/learn-java',
+        CourseImage: 'https://artoftesting.com/wp-content/uploads/2020/03/introduction-to-java-featured.jpg'
+      },
+      {
+        Course: 'CSS So Swag',
+        CourseCode: 'CSS101',
+        CourseDescription: "Learn the in's and out's of CSS to build a swag website",
+        Product: 'Visual Studio Code',
+        Role: 'Web Designer',
+        Level: 'Beginner',
+        Duration: '1 Month',
+        Price: '29.95',
+        CourseURL: 'https://www.w3schools.com/css/',
+        CourseImage: 'https://positivethinking.tech/wp-content/uploads/2023/08/CSS-new-features-cover-800x593.png'
+      },
+      {
+        Course: 'IAWS',
+        CourseCode: 'AI-101',
+        CourseDescription: 'Amazon Web Services',
+        Product: 'amazin',
+        Role: 'cloud',
+        Level: 'Beginner',
+        Duration: '3 months',
+        Price: '49.99',
+        CourseURL: 'https://aws.amazon.com/free/',
+        CourseImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWvOCHeqNEMvlfFJGfKoCQvZlwwgFDEo1D43M_yqLGrw&s'
+      },
+      {
+        Course: 'Comprehensive API Development Course | Master APIs with Hands-On Projects!',
+        CourseCode: 'AP-001',
+        CourseDescription: 'Unlock the power of APIs with a comprehensive course, along with hands-on projects. Perfect for Quality Assurance Testing Engineers seeking to expand their API testing skills.',
+        Product: 'API Development',
+        Role: 'Quality Assurance Testing Engineer',
+        Level: 'Beginner',
+        Duration: '6 months',
+        Price: '49.99',
+        CourseURL: 'https://www.coursera.org/courses?query=api',
+        CourseImage: 'https://i.ytimg.com/vi/iOtNArnpOrc/maxresdefault.jpg'
+      }
+    ];
+
+    function displayCourses(courses) {
+      const courseList = document.getElementById('courseList');
+      courseList.innerHTML = '';
+
+      courses.forEach(course => {
+        const card = document.createElement('div');
+        card.className = 'card mb-4';
+
+        card.innerHTML = `
+          <img src="${course.CourseImage}" class="card-img-top" alt="${course.Course}">
+          <div class="card-body">
+            <h5 class="card-title">${course.Course}</h5>
+            <p class="card-text">${course.CourseDescription}</p>
+            <p class="card-text"><strong>Price: </strong>$${course.Price}</p>
+            <button class="myButton">Click Me</button>
+            <a href="${course.CourseURL}" class="btn btn-primary">Learn More</a>
+          </div>
+        `;
+
+        courseList.appendChild(card);
+      });
+    }
+   
+
+    document.getElementById('priceFilter').addEventListener('change', (event) => {
+      const selectedPrice = event.target.value;
+      const filteredCourses = selectedPrice === 'all'
+        ? courses
+        : courses.filter(course => course.Price === selectedPrice);
+      displayCourses(filteredCourses);
+    });
+
+    // Initial display of courses
+    // displayCourses(courses);
+    
+    displayCourses(courses);
+            const allbuttons =  document.querySelectorAll('.myButton');
+            console.log(allbuttons);
+            allbuttons.forEach(button => 
+                button.addEventListener('mouseover', runSecondCode)
+            )
+     let Cart = []
+
+     function runSecondCode() {
+     alert('Courses added to cart');
+     }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
